@@ -1,0 +1,49 @@
+# Sécurité pour l'environnement de production
+
+# Bloquer l'accès aux fichiers sensibles
+<FilesMatch "\.(log|sql|md|json)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Bloquer l'accès aux dossiers de configuration et base de données
+<DirectoryMatch "(configuration|base_de_donnees_sql|journaux)">
+    Order allow,deny
+    Deny from all
+</DirectoryMatch>
+
+# Autoriser l'accès aux fichiers PHP publics
+<FilesMatch "\.(php)$">
+    Order allow,deny
+    Allow from all
+</FilesMatch>
+
+# Autoriser l'accès aux PDF générés
+<Directory "documents_pdf">
+    Order allow,deny
+    Allow from all
+</Directory>
+
+# Protection contre les injections
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # Bloquer les tentatives d'accès aux fichiers de configuration
+    RewriteRule ^configuration/ - [F,L]
+    RewriteRule ^base_de_donnees_sql/ - [F,L]
+    RewriteRule ^journaux/ - [F,L]
+</IfModule>
+
+# Désactiver l'affichage des erreurs PHP en production
+php_flag display_errors Off
+php_flag log_errors On
+
+# Désactiver le listing des répertoires
+Options -Indexes
+
+# Protection MIME
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-XSS-Protection "1; mode=block"
+</IfModule>

@@ -1,0 +1,30 @@
+# Sécurité pour l'environnement de production - VERSION SIMPLIFIÉE
+
+# Désactiver le listing des répertoires
+Options -Indexes
+
+# Bloquer l'accès direct aux fichiers sensibles via HTTP
+# (mais autoriser les includes PHP internes)
+<FilesMatch "\.(log|sql|md|json|ini|bak)$">
+    Require all denied
+</FilesMatch>
+
+# Protection MIME
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-XSS-Protection "1; mode=block"
+</IfModule>
+
+# Protéger uniquement les fichiers de configuration contre l'accès HTTP DIRECT
+# (pas les includes internes)
+<FilesMatch "configuration\.php$">
+    <RequireAll>
+        # Autoriser seulement si c'est un include PHP (pas une requête HTTP directe)
+        Require all denied
+    </RequireAll>
+</FilesMatch>
+
+# Bloquer l'accès aux fichiers SQL
+RewriteEngine On
+RewriteRule \.(sql)$ - [F,L]

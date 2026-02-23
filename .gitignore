@@ -1,0 +1,4 @@
+/vendor/
+/journaux/*.log
+/stockage/documents/*.pdf
+!/stockage/documents/.gitkeep
