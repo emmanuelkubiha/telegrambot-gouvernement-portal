@@ -12,7 +12,8 @@ return [
     'url_base' => 'http://localhost:8888/guichet-admin',
 
     // Telegram
-    'token_telegram' => '8302001753:AAFcnw3AqHZ_Ix_rzopao2uEJCtBWoBDAAw',
+    // 'token_telegram' => '8302001753:AAFcnw3AqHZ_Ix_rzopao2uEJCtBWoBDAAw', // Ancien token
+    'token_telegram' => '7114289996:AAELhYYXzRZqZEEGgsX8S7JTylOrMR-fO0s',
     'secret_webhook_telegram' => 'sud-kivu-2026',
 
     // Duree de validite d'un PDF (en minutes)
