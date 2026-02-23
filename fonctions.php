@@ -283,7 +283,7 @@ function generer_document_pdf(PDO $pdo, array $config, array $citoyen, array $ty
 
     return [
         'token' => $token,
-        'lien' => rtrim($config['url_base'], '/') . '/telecharger.php?token=' . urlencode($token),
+        'lien' => rtrim($config['url_base'], '/') . '/guichet-admin/telecharger.php?token=' . urlencode($token),
         'date_expiration' => $dateExpiration,
     ];
 }
