@@ -109,6 +109,12 @@ try {
             }
         }
 
+        // === DEMANDES ===
+        if ($postAction === 'supprimer_tous_historiques') {
+            $pdo->exec('DELETE FROM demandes_documents');
+            $messageSucces = 'Tous les historiques ont été supprimés.';
+        }
+
         // === WEBHOOK TELEGRAM ===
         // Configuration via la page dédiée configurer_webhook.php
     }
@@ -460,8 +466,18 @@ try {
                 <!-- SECTION DEMANDES -->
                 <?php if ($section === 'demandes'): ?>
                     <div class="card">
-                        <div class="card-header bg-info text-white">
+                        <div class="card-header bg-info text-white d-flex justify-content-between align-items-center">
                             <h5 class="mb-0">Historique des demandes de documents</h5>
+                            <form method="POST" style="display: inline;" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer tous les historiques ? Cette action est irrévocable.');">
+                                <input type="hidden" name="action" value="supprimer_tous_historiques">
+                                <button type="submit" class="btn btn-danger btn-sm">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash me-1" viewBox="0 0 16 16">
+                                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 1a.5.5 0 0 0-.5.5v1h12V1.5a.5.5 0 0 0-.5-.5h-11z"/>
+                                    </svg>
+                                    Supprimer tous
+                                </button>
+                            </form>
                         </div>
                         <div class="card-body p-0">
                             <div class="table-responsive">
