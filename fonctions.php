@@ -91,6 +91,11 @@ function telegram_configurer_webhook(array $config, string $url): array
     ]);
 }
 
+function telegram_lire_webhook(array $config): array
+{
+    return telegram_requete($config, 'getWebhookInfo', []);
+}
+
 function citoyen_par_numero_piece(PDO $pdo, string $numeroPiece): ?array
 {
     $sql = 'SELECT id, nom_complet, numero_piece, date_naissance, ville FROM citoyens WHERE numero_piece = :numero_piece LIMIT 1';

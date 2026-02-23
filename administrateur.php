@@ -108,12 +108,16 @@ try {
                 $messageErreur = 'Vous ne pouvez pas supprimer votre propre compte.';
             }
         }
+
+        // === WEBHOOK TELEGRAM ===
+        // Configuration via la page dédiée configurer_webhook.php
     }
 
     // CHARGEMENT DES DONNÉES
     $citoyens = lister_citoyens($pdo, 100);
     $administrateurs = lister_administrateurs($pdo);
     $demandes = lister_demandes_documents($pdo, 100);
+    // Webhook géré sur la page dédiée
     
     // Pour l'édition
     $citoyenAEditer = null;
@@ -227,6 +231,16 @@ try {
                         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                     </div>
                 <?php endif; ?>
+
+                <div class="card">
+                    <div class="card-header bg-light">
+                        <h6 class="mb-0">Webhook Telegram</h6>
+                    </div>
+                    <div class="card-body d-flex flex-wrap gap-2 align-items-center">
+                        <div class="text-muted">Configurer et verifier l'URL de webhook.</div>
+                        <a href="configurer_webhook.php" class="btn btn-outline-primary btn-sm">Ouvrir la page webhook</a>
+                    </div>
+                </div>
 
                 <!-- SECTION CITOYENS -->
                 <?php if ($section === 'citoyens'): ?>

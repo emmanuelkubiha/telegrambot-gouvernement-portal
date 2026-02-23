@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 // Version simplifiée de connexion_admin avec affichage des erreurs
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
@@ -7,7 +9,6 @@ ini_set('log_errors', '1');
 echo "<!-- Début du script -->\n";
 
 try {
-    declare(strict_types=1);
     
     echo "<!-- Chargement demarrage.php -->\n";
     require_once __DIR__ . '/demarrage.php';

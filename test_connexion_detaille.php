@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 // Test détaillé de connexion_admin.php étape par étape
 
 error_reporting(E_ALL);
@@ -7,7 +9,6 @@ ini_set('display_errors', '1');
 echo "<h1>Test détaillé de connexion_admin.php</h1>";
 
 echo "<h2>Étape 1 : Déclaration strict types</h2>";
-declare(strict_types=1);
 echo "✓ OK<br><br>";
 
 echo "<h2>Étape 2 : Chargement demarrage.php</h2>";

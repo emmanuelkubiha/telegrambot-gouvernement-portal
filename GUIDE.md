@@ -201,6 +201,7 @@ Après installation de la base de données, un compte administrateur est créé 
     - Document demandé
     - Statut de la demande
     - Date et heure de la demande
+  - **Webhook Telegram :** lien discret vers une page dédiée pour configurer, vérifier ou désactiver
 3. Toutes les opérations CRUD disponibles :
   - Ajouter un citoyen ou admin via formulaire
   - Modifier en cliquant sur "Modifier"
